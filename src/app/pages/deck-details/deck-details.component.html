@@ -1,0 +1,6 @@
+<h1>{{ Deck.name }} </h1>
+<p>{{ Deck.description }}</p>
+<p>Format: {{ Deck.format.name }}</p>
+<ul>
+  <li *ngFor="let category of Deck.categories">{{ category.name }}</li>
+</ul>

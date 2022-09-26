@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --main-theme-color: rgb(255, 120, 142);
+  --bg-color: rgb(29, 29, 29);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: var(--main-theme-color);
+}
+
+ul {
+  list-style-type: none;
+}
+
+hr {
+  /* width: 100%; */
+  border: none;
+  height: 1px;
+  background-color: rgb(68, 68, 68);
+}

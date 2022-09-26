@@ -1,0 +1,9 @@
+<h2>Your decks</h2>
+<a routerLink="/decks/new">New Deck</a>
+<hr>
+<ul>
+  <li *ngFor="let deck of DeckList" [routerLink]="[deck.id]">
+    {{ deck.name }}
+    <hr>
+  </li>
+</ul>
