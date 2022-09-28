@@ -1,9 +1,10 @@
 <h2>Your decks</h2>
-<a routerLink="/recipes/new">New Deck</a>
+<a routerLink="/decks/new">New Deck</a>
 <hr>
-<ul>
-  <li *ngFor="let deck of DeckList" [routerLink]="[deck.id]">
-    {{ deck.name }}
+<ul *ngIf="($deckList | async) as decks">
+  <li *ngFor="let deck of decks">
+    <a [routerLink]="[deck.id]">{{ deck.name }}</a>
+    <a class="red" (click)="delete(deck.id)">Delete</a>
     <hr>
   </li>
 </ul>
