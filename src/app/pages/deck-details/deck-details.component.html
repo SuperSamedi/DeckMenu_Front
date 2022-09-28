@@ -8,3 +8,9 @@
   <a class="red" role="button" (click)="delete(deck.id)">Delete</a>
 </div>
 
+<form [formGroup]="addCardListForm" (ngSubmit)="onCardListSubmit()">
+  <label for="card-list">Imports cards from text list:</label>
+  <textarea id="card-list" formControlName="addCardList" rows="5" cols="40" placeholder="1 Card per line&#13;&#10;format: # Card Name (set)"></textarea>
+  <button type="submit" *ngIf="addCardListForm.valid">Import</button>
+</form>
+
