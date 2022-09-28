@@ -1,6 +1,10 @@
-<h1>{{ Deck.name }} </h1>
-<p>{{ Deck.description }}</p>
-<p>Format: {{ Deck.format.name }}</p>
-<ul>
-  <li *ngFor="let category of Deck.categories">{{ category.name }}</li>
-</ul>
+<div *ngIf="($deckObs | async) as deck" >
+  <h1>{{ deck.name }} </h1>
+  <p>{{ deck.description }}</p>
+  <p>Format: {{ deck.format.name }}</p>
+  <ul>
+    <li *ngFor="let category of deck.categories">{{ category.name }}</li>
+  </ul>
+  <a class="red" role="button" (click)="delete(deck.id)">Delete</a>
+</div>
+
