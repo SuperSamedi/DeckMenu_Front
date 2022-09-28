@@ -2,8 +2,10 @@
 <h3>Add Deck</h3>
 <form [formGroup]="newDeckForm" (ngSubmit)="onSubmit()">
   <label for="in-deckname">Name: </label>
-  <input type="text" name="deckName" id="in-deckname" formControlName="deckName" required>
+  <input type="text" name="deckName" id="in-deckname" formControlName="name" required>
   <label for="in-format">Format: </label>
-  inpu
+  <select name="formats" id="formats" formControlName="formatId">
+    <option *ngFor="let format of Formats" [value]="format.id">{{ format.name }}</option>
+  </select>
   <button type="submit" *ngIf="newDeckForm.valid">Create</button>
 </form>

@@ -9,9 +9,8 @@ import { YourDecksComponent } from './pages/your-decks/your-decks.component';
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'decks', component: YourDecksComponent },
-  { path: 'decks/:id', component: DeckDetailsComponent },
   { path: 'decks/new', component: NewDeckComponent },
-  { path: 'recipes/new', component: NewDeckComponent },
+  { path: 'decks/:id', component: DeckDetailsComponent },
   { path: 'username/menu', component: ShowcaseComponent }
 ];
 
