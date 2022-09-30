@@ -1,4 +1,6 @@
+import { Card } from "./card";
 import { Category } from "./category";
+import { DeckCard } from "./deckcard";
 import { Format } from "./format";
 
 export interface Deck {
@@ -8,5 +10,6 @@ export interface Deck {
   description: string;
   format: Format;
   categories: Category[];
+  cards: DeckCard[];
 
 }

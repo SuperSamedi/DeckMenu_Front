@@ -36,6 +36,9 @@ export class DeckDetailsComponent implements OnInit {
 
   onCardListSubmit() {
     console.log(this.addCardListForm.value);
-    // this._deckService.importCards(this._route.snapshot.params["id"], this.addCardListForm.value);
+    this._deckService.importCards(this._route.snapshot.params["id"], this.addCardListForm.value).subscribe(response => {
+      console.log(response);
+      this.$deckObs = this._deckService.getDetails(this._route.snapshot.params["id"]);
+    });
   }
 }
