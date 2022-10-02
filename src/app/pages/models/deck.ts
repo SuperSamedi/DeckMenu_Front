@@ -11,5 +11,6 @@ export interface Deck {
   format: Format;
   categories: Category[];
   cards: DeckCard[];
+  isOnTheMenu: boolean;
 
 }
