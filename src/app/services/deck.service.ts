@@ -30,4 +30,8 @@ export class DeckService {
     return this._http.delete<Deck>(environment.api.deckmenu + "/decks/" + id);
   }
 
+  importCards(id: number, list: any): Observable<any> {
+    return this._http.put(environment.api.deckmenu + "/decks/update/from-list/" + id, list);
+  }
+
 }

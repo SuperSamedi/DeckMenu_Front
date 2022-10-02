@@ -30,7 +30,6 @@ ul {
 }
 
 hr {
-  /* width: 100%; */
   border: none;
   height: 1px;
   background-color: rgb(68, 68, 68);
@@ -38,4 +37,21 @@ hr {
 
 .red {
   color: var(--red-color);
+}
+
+.magic-card {
+  width: 45%;
+  max-width: 63.5mm;
+  aspect-ratio: 635/889;
+  background-image: url(/src/assets/card-back.jpg);
+  border-radius: 5%;
+  background-size: cover;
+  border-right: 1px solid rgba(255, 255, 224, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 224, 0.3);
+}
+
+.magic-card:hover {
+  outline: 1px  solid var(--main-theme-color);
+  transition: all 0.1s ease;
+  cursor: pointer;
 }

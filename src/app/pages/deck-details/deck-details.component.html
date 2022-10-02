@@ -8,3 +8,13 @@
   <a class="red" role="button" (click)="delete(deck.id)">Delete</a>
 </div>
 
+<form [formGroup]="addCardListForm" (ngSubmit)="onCardListSubmit()">
+  <label for="card-list">Imports cards from text list:</label>
+  <textarea id="card-list" formControlName="addCardList" rows="5" cols="40" placeholder="1 Card per line&#13;&#10;Format example: &#13;&#10;5 Forest (dmu) 281&#13;&#10;1 Nissa, Who Shakes&#13;&#10;..."></textarea>
+  <button type="submit" *ngIf="addCardListForm.valid">Import</button>
+</form>
+
+<div class="decklist" *ngIf="($deckObs | async) as deck">
+  <img class="magic-card" *ngFor="let card of deck.cards" src={{card.card.imageURI}} alt={{card.card.name}}>
+</div>
+
