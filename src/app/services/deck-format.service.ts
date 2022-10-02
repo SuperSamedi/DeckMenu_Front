@@ -12,6 +12,6 @@ export class DeckFormatService {
   constructor(private _http: HttpClient) { }
 
   getAllFormats(): Observable<Format[]> {
-    return this._http.get<Format[]>(environment.api.url + "/deck-formats/all")
+    return this._http.get<Format[]>(environment.api.deckmenu + "/deck-formats/all")
   }
 }

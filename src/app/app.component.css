@@ -19,6 +19,10 @@ nav ul li {
   align-items: center;
 }
 
+a{
+  color: white;
+}
+
 #burger {
   /* display: flex; */
   flex-direction: column;
@@ -32,4 +36,8 @@ nav ul li {
   height: 4px;
   background-color: white;
   border-radius: 1px;
+}
+
+#content {
+  padding: .5rem;
 }

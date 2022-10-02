@@ -1,6 +1,11 @@
 <nav>
   <ul>
-    <li routerLink="/">Deck Menu</li>
+    <li>
+      <a routerLink="/">Deck Menu</a>
+    </li>
+    <li>
+      <a routerLink="/decks">Your decks</a>
+    </li>
     <!-- <li id="burger">
       <div></div>
       <div></div>
@@ -9,4 +14,6 @@
   </ul>
 </nav>
 
-<router-outlet></router-outlet>
+<div id="content">
+  <router-outlet></router-outlet>
+</div>
