@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'decks', component: YourDecksComponent },
   { path: 'decks/new', component: NewDeckComponent },
   { path: 'decks/:id', component: DeckDetailsComponent },
-  { path: 'username/menu', component: ShowcaseComponent }
+  { path: 'menu/:username', component: ShowcaseComponent }
 ];
 
 @NgModule({

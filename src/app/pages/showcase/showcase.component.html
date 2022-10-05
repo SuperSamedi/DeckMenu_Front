@@ -1,1 +1,8 @@
-<p>showcase works!</p>
+<h2>{{ username }}'s Menu</h2>
+<hr>
+<ul *ngIf="($AllDecksResponse | async) as response">
+  <li *ngFor="let deck of response.decks">
+    <a [routerLink]="['/decks/', deck.id]">{{ deck.name }}</a>
+    <hr>
+  </li>
+</ul>
