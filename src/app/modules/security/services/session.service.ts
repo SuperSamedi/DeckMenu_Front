@@ -12,9 +12,9 @@ import { SignInService } from './sign-in.service';
 })
 export class SessionService {
 
-  private _account: Observable<Account> | null = null;
+  private _account: Observable<any | null> = new BehaviorSubject(null);
 
-  get Account() {
+  get $Account(): Observable<Account | null> {
     return this._account;
   }
 
