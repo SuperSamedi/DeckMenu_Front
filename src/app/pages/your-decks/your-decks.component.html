@@ -1,8 +1,8 @@
 <h2>Your decks</h2>
 <a routerLink="/decks/new">New Deck</a>
 <hr>
-<ul *ngIf="($deckList | async) as decks">
-  <li *ngFor="let deck of decks">
+<ul *ngIf="($AllDecksResponse | async) as response">
+  <li *ngFor="let deck of response.decks">
     <a [routerLink]="[deck.id]">{{ deck.name }}</a>
     <a class="red" (click)="delete(deck.id)">Delete</a>
     <hr>

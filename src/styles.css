@@ -8,11 +8,14 @@
   --main-theme-color: rgb(255, 120, 142);
   --bg-color: rgb(29, 29, 29);
   --red-color: rgb(181, 18, 18);
+  --highlight-color: rgb(113, 113, 113);
+  --contrast-color: white;
 }
 
 body {
   background-color: var(--bg-color);
   color: white;
+  position: relative;
 }
 
 a {
@@ -32,7 +35,8 @@ ul {
 hr {
   border: none;
   height: 1px;
-  background-color: rgb(68, 68, 68);
+  width: 95%;
+  background-color: var(--highlight-color);
 }
 
 .red {
@@ -54,4 +58,10 @@ hr {
   outline: 1px  solid var(--main-theme-color);
   transition: all 0.1s ease;
   cursor: pointer;
+}
+
+app-close-cross {
+  width: 2em;
+  /* width: 5em; */
+  aspect-ratio: 1/1;
 }

@@ -6,24 +6,29 @@ import { Account } from '../models/account';
 
 import jwt_decode from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { SignInService } from './sign-in.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
 
-  private _account: BehaviorSubject<any | null> = new BehaviorSubject(null);
+  private _account: Observable<any | null> = new BehaviorSubject(null);
 
   get $Account(): Observable<Account | null> {
-    return this._account.asObservable();
+    return this._account;
   }
 
 
-  constructor(private _http: HttpClient) { }
+  constructor(
+    private _http: HttpClient,
+    private _signInService: SignInService,
+  ) { }
 
 
-  signIn(token: Token) {
-    localStorage.setItem("token", token.value);
+  signIn(accountData: Observable<Account>) {
+    // localStorage.setItem("token", token.value);
+    this._account = accountData;
   }
 
   signOut() {

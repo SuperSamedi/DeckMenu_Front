@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SignInService } from './modules/security/services/sign-in.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'DeckMenu_Front';
+
+  constructor(private _signInService: SignInService) {
+
+  }
+
+  get isSignInFormVisible(): boolean {
+    return this._signInService.isSignInFormVisible;
+  }
 }

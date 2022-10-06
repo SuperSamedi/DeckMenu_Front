@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DeckService } from 'src/app/services/deck.service';
+import { AllDecksResponse } from '../models/all-decks-response';
 import { Deck } from '../models/deck';
 
 @Component({
@@ -10,7 +11,7 @@ import { Deck } from '../models/deck';
 })
 export class YourDecksComponent implements OnInit {
 
-  $deckList: Observable<Deck[]> | null = null;
+  $AllDecksResponse: Observable<AllDecksResponse> | null = null;
 
   constructor(
     private _deckService: DeckService
@@ -18,7 +19,7 @@ export class YourDecksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.$deckList = this._deckService.getAll();
+    this.$AllDecksResponse = this._deckService.getAll();
   }
 
   delete(id: number) {
