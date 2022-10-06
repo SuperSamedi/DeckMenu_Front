@@ -10,6 +10,7 @@ import { YourDecksComponent } from './pages/your-decks/your-decks.component';
 import { DeckDetailsComponent } from './pages/deck-details/deck-details.component';
 import { NewDeckComponent } from './pages/new-deck/new-deck.component';
 import { ShowcaseComponent } from './pages/showcase/showcase.component';
+import { SecurityModule } from './modules/security/security.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ShowcaseComponent } from './pages/showcase/showcase.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SecurityModule
   ],
   providers: [],
   bootstrap: [AppComponent]
