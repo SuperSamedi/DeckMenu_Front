@@ -11,6 +11,7 @@ import { DeckDetailsComponent } from './pages/deck-details/deck-details.componen
 import { NewDeckComponent } from './pages/new-deck/new-deck.component';
 import { ShowcaseComponent } from './pages/showcase/showcase.component';
 import { SecurityModule } from './modules/security/security.module';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,9 +28,10 @@ import { SecurityModule } from './modules/security/security.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SecurityModule
+    SecurityModule,
+    SharedModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

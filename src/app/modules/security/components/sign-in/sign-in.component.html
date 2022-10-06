@@ -1,19 +1,20 @@
-<div id="sign-in-container">
+<div id="sign-in-container" >
+  <app-close-cross id="close-cross" (click)="onCrossClicked()"></app-close-cross>
   <div id="sign-in-box">
     <h2>Sign in</h2>
-    <form (submit)="onSubmit()">
-      <div class="form-input">
+    <hr>
+    <form id="sign-in-form" (submit)="onSubmit()">
+      <div class="form-field">
         <label for="in-username">Username</label>
-        <input type="text" name="username" id="in-username" [(ngModel)]="username">
+        <input class="interactive form-txt-input" type="text" name="username" id="in-username" [(ngModel)]="username">
       </div>
 
-      <div class="form-input">
+      <div class="form-field">
         <label for="in-password">Password</label>
-        <input type="password" name="password" id="in-password" [(ngModel)]="password">
+        <input class="interactive form-txt-input" type="password" name="password" id="in-password" [(ngModel)]="password">
       </div>
 
-      <button type="submit">Sign in</button>
+      <button class="interactive" id="btn-submit" type="submit">Sign in</button>
     </form>
   </div>
-
 </div>
