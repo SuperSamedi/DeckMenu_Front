@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class SignInService {
-
   isSignInFormVisible: boolean = false;
   signInFormVisibilityChange: Subject<boolean> = new Subject<boolean>();
 

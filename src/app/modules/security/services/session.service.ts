@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Token } from '../models/token';
 import { Account } from '../models/account';
 
 import jwt_decode from 'jwt-decode';
