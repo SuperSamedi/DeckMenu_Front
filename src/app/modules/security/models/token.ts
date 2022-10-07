@@ -1,5 +1,5 @@
 export interface Token {
 
-  value: string;
+  token: string;
 
 }

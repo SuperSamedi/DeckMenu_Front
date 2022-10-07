@@ -7,13 +7,14 @@ import { Account } from '../models/account';
 import jwt_decode from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SignInService } from './sign-in.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
 
-  private _account: Observable<any | null> = new BehaviorSubject(null);
+  private _account: BehaviorSubject<any | null> = new BehaviorSubject<Account | null>(null);
 
   get $Account(): Observable<Account | null> {
     return this._account;
@@ -22,17 +23,20 @@ export class SessionService {
 
   constructor(
     private _http: HttpClient,
-    private _signInService: SignInService,
+    private _router: Router
   ) { }
 
 
-  signIn(accountData: Observable<Account>) {
-    // localStorage.setItem("token", token.value);
-    this._account = accountData;
+  signIn(token: Token) {
+    localStorage.setItem("token", token.token);
+    this.getLoggedAccount(token.token);
   }
 
   signOut() {
     localStorage.removeItem("token");
+    this._account.next(null);
+    this._router.navigate(['']);
+    console.log("Signed out.");
   }
 
   getLoggedAccount(token: string) {
@@ -40,8 +44,9 @@ export class SessionService {
     const username: string = data.sub;
     const params = new HttpHeaders().append("Authorization", `Bearer ${token}`);
 
-    console.log("Decoded JWT: " + data);
-
-    this._http.get<Account>(environment.api.deckmenu + "/accounts/" + username, { headers: params })
+    this._http.get<Account>(environment.api.deckmenu + "/accounts/" + username, { headers: params }).subscribe(data => {
+      console.log(data);
+      this._account.next(data)
+    });
   }
 }

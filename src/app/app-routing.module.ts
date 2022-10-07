@@ -8,10 +8,10 @@ import { YourDecksComponent } from './pages/your-decks/your-decks.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'decks', component: YourDecksComponent },
+  { path: ':username/decks', component: YourDecksComponent },
   { path: 'decks/new', component: NewDeckComponent },
-  { path: 'decks/:id', component: DeckDetailsComponent },
-  { path: 'menu/:username', component: ShowcaseComponent }
+  { path: ':username/decks/:id', component: DeckDetailsComponent },
+  { path: ':username/menu', component: ShowcaseComponent }
 ];
 
 @NgModule({
