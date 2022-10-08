@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SessionService } from './modules/security/services/session.service';
 import { SignInService } from './modules/security/services/sign-in.service';
 
 @Component({
@@ -9,8 +10,13 @@ import { SignInService } from './modules/security/services/sign-in.service';
 export class AppComponent {
   title = 'DeckMenu_Front';
 
-  constructor(private _signInService: SignInService) {
-
+  constructor(
+    private _signInService: SignInService,
+    private _session: SessionService
+  ) {
+    if (localStorage.getItem("token")) {
+        _session.getLoggedAccount(localStorage.getItem("token")!);
+    }
   }
 
   get isSignInFormVisible(): boolean {

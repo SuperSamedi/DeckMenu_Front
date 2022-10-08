@@ -1,0 +1,38 @@
+<nav>
+  <ul>
+    <li id="home" class="hover-link" [routerLink]="'/'">
+      Deck Menu
+    </li>
+    <li class="spacer"></li>
+    <li *ngIf="signedUser">
+      <img id="admin-icon" *ngIf="isAdmin()" src="/assets/img/chef-hat.png" alt="chef hat icon">
+      {{signedUser.username}}
+    </li>
+    <li id="burger" (click)="toggleOptionsVisibility()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </li>
+  </ul>
+</nav>
+
+<div id="menu-options-container" *ngIf="isOptionsVisible">
+  <h3>Options</h3>
+  <hr>
+  <div id="options-list">
+    <ul>
+      <li class="hover-link" *ngIf="!signedUser" (click)="openSignInForm()">
+        Login
+      </li>
+      <li class="hover-link" *ngIf="signedUser" (click)="toggleOptionsVisibility()" [routerLink]="[signedUser.username + '/decks']">
+        Your decks
+      </li>
+      <li class="hover-link" *ngIf="signedUser" (click)="toggleOptionsVisibility()" [routerLink]="[signedUser.username + '/menu']">
+        Your menu
+      </li>
+      <li class="hover-link" *ngIf="signedUser" (click)="logout()">
+        Logout
+      </li>
+    </ul>
+  </div>
+</div>

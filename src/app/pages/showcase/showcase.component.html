@@ -1,7 +1,18 @@
-<h2>{{ username }}'s Menu</h2>
+<!-- <h2>{{ username }}'s Menu</h2>
 <hr>
 <ul *ngIf="($AllDecksResponse | async) as response">
   <li *ngFor="let deck of response.decks">
+    <a [routerLink]="['/decks/', deck.id]">{{ deck.name }}</a>
+    <hr>
+  </li>
+</ul> -->
+
+<h2>{{ username }}'s Menu</h2>
+<hr>
+<p *ngIf="($Decks | async) as decks">{{ decks.length }} decks</p>
+<p *ngIf="!($Decks | async) as decks">0 decks</p>
+<ul *ngIf="($Decks | async) as decks">
+  <li *ngFor="let deck of decks">
     <a [routerLink]="['/decks/', deck.id]">{{ deck.name }}</a>
     <hr>
   </li>

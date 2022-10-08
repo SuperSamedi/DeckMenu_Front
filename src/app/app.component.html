@@ -1,20 +1,5 @@
-<!-- <nav>
-  <ul>
-    <li>
-      <a routerLink="/">Deck Menu</a>
-    </li>
-    <li>
-      <a routerLink="/decks">Your decks</a>
-    </li>
-    <li id="burger">
-      <div></div>
-      <div></div>
-      <div></div>
-    </li>
-  </ul>
-</nav> -->
 <app-navbar></app-navbar>
-<div id="content">
+<div id="main-view">
   <router-outlet></router-outlet>
 </div>
 <app-sign-in *ngIf="isSignInFormVisible"></app-sign-in>

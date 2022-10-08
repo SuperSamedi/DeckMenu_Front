@@ -1,5 +1,5 @@
-<div id="sign-in-container" >
-  <app-close-cross id="close-cross" (click)="onCrossClicked()"></app-close-cross>
+<div id="sign-in-container">
+  <app-close-cross id="close-cross" (click)="onCloseForm()"></app-close-cross>
   <div id="sign-in-box">
     <h2>Sign in</h2>
     <hr>
@@ -14,6 +14,9 @@
         <input class="interactive form-txt-input" type="password" name="password" id="in-password" [(ngModel)]="password">
       </div>
 
+      <div class="error-message">
+          <p *ngIf="signInFailed">Incorrect username or password.</p>
+      </div>
       <button class="interactive" id="btn-submit" type="submit">Sign in</button>
     </form>
   </div>

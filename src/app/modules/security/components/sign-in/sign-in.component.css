@@ -1,23 +1,17 @@
 #sign-in-container {
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, .5);
+  margin: 50px 0;
 }
 
 #sign-in-box {
-  height: 75vh;
   width: 66vw;
   max-width: 300px;
+  max-height: 75vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* pointer-events: none; */
   background-color: var(--bg-color);
   border-radius: 1em;
   padding: 1em;
@@ -52,6 +46,7 @@
   border-radius: 10em;
   border: none;
   font-weight: bold;
+  font-size: 1rem;
   background-color: var(--main-theme-color);
   color: white;
 }
@@ -60,9 +55,13 @@
   cursor: pointer;
 }
 
-#close-cross {
-  position: absolute;
-  top: 0;
-  right: 0;
+app-close-cross {
+  align-self: flex-end;
   margin: 0.5rem;
+  transform: translateX(calc(0.5rem + 16px));
+}
+
+.error-message {
+  height: 1em;
+  color: red;
 }

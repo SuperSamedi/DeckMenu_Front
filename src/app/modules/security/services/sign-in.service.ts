@@ -26,5 +26,6 @@ export class SignInService {
 
   toggleSignInFormVisibility() {
     this.signInFormVisibilityChange.next(!this.isSignInFormVisible);
+    console.log("Sign in form is visible: " + this.isSignInFormVisible);
   }
 }

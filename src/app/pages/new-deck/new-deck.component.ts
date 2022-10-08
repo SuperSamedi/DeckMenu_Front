@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { DeckFormatService } from 'src/app/services/deck-format.service';
 import { DeckService } from 'src/app/services/deck.service';
 import { Format } from '../models/format';
@@ -12,14 +12,10 @@ import { Format } from '../models/format';
 })
 export class NewDeckComponent implements OnInit {
 
-  private deckFormats$: Observable<Format[]> | null = null;
-  private _deckFormats: Format[] | null = null;
-  get Formats(): Format[] | null{
-    return this._deckFormats;
-  }
+  $Formats: Observable<Format[]>;
 
   newDeckForm = new FormGroup({
-    name: new FormControl("Deck Name", [Validators.required, Validators.minLength(1), Validators.maxLength(26)]),
+    name: new FormControl("", [Validators.required, Validators.minLength(1), Validators.maxLength(26)]),
     formatId: new FormControl("")
   })
 
@@ -27,14 +23,13 @@ export class NewDeckComponent implements OnInit {
     private _deckService: DeckService,
     private _formatService: DeckFormatService,
     private _router: Router
-  ) { }
+  ) {
+    this.$Formats = this._formatService.getAllFormats().pipe(
+      map((data: { formats: Format[] }) => data.formats)
+    );
+  }
 
   ngOnInit(): void {
-    this.deckFormats$ = this._formatService.getAllFormats();
-    this.deckFormats$.subscribe(f => {
-      console.log(f);
-      this._deckFormats = f
-    });
   }
 
   onSubmit() {
@@ -43,7 +38,5 @@ export class NewDeckComponent implements OnInit {
       this._router.navigate(['/decks/'+ returnData.id])
     })
   }
-
-
 
 }

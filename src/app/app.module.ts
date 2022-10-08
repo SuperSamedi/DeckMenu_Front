@@ -12,6 +12,8 @@ import { NewDeckComponent } from './pages/new-deck/new-deck.component';
 import { ShowcaseComponent } from './pages/showcase/showcase.component';
 import { SecurityModule } from './modules/security/security.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { UnauthorizedComponent } from './pages/errors/unauthorized/unauthorized.component';
+import { NotFoundComponent } from './pages/errors/not-found/not-found.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { SharedModule } from './modules/shared/shared.module';
     YourDecksComponent,
     DeckDetailsComponent,
     NewDeckComponent,
-    ShowcaseComponent
+    ShowcaseComponent,
+    UnauthorizedComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
