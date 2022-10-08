@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AllDecksResponse } from '../pages/models/all-decks-response';
 import { Deck } from '../pages/models/deck';
@@ -36,9 +36,13 @@ export class DeckService {
     return this._http.get<Deck>(environment.api.deckmenu + `/decks/` + id);
   }
 
-  getShowcaseDecks(username: string): Observable<AllDecksResponse> {
-    return this._http.get<AllDecksResponse>(environment.api.deckmenu + "/decks/all-showcase-decks/" + username)
+  getShowcaseDecks(username: string): Observable<{decks: Deck[]}> {
+    return this._http.get<{decks: Deck[]}>(environment.api.deckmenu + "/decks/all-showcase-decks/" + username);
   }
+
+  // getShowcaseDecks(username: string): Observable<AllDecksResponse> {
+  //   return this._http.get<AllDecksResponse>(environment.api.deckmenu + "/decks/all-showcase-decks/" + username)
+  // }
 
   importCards(id: number, list: any): Observable<any> {
     return this._http.put(environment.api.deckmenu + "/decks/update/from-list/" + id, list);
