@@ -1,5 +1,8 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Account } from 'src/app/modules/security/models/account';
+import { AccountRole } from 'src/app/modules/security/models/account-role';
+import { Role } from 'src/app/modules/security/models/role';
 import { SessionService } from 'src/app/modules/security/services/session.service';
 import { SignInService } from 'src/app/modules/security/services/sign-in.service';
 
@@ -11,7 +14,7 @@ import { SignInService } from 'src/app/modules/security/services/sign-in.service
 })
 export class NavbarComponent implements OnInit {
 
-  signedUser: any | null = null;
+  signedUser: Account | null = null;
   isOptionsVisible: boolean = false;
   optionsVisibilityChange: Subject<boolean> = new Subject<boolean>();
 
@@ -27,8 +30,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this._session.$Account.subscribe(user => {
-      this.signedUser = user
-      console.log("User: " + user);
+      this.signedUser = user;
+
+      // console.log("User: " + JSON.stringify(user));
     });
   }
 
@@ -52,6 +56,13 @@ export class NavbarComponent implements OnInit {
     if (!this._eref.nativeElement.contains(event.target) && this.isOptionsVisible) {
         this.toggleOptionsVisibility();
     }
+  }
+
+  isAdmin(): boolean {
+    if (this.signedUser) {
+      return this.signedUser.roles.some((r: AccountRole) => r.role.roleName === "HEADCHEF");
+    }
+    return false;
   }
 
 }
