@@ -14,8 +14,8 @@
         <input class="interactive form-txt-input" type="password" name="password" id="in-password" [(ngModel)]="password">
       </div>
 
-      <div *ngIf="signInFailed">
-          <p class="error-message">Incorrect username or password.</p>
+      <div class="error-message">
+          <p *ngIf="signInFailed">Incorrect username or password.</p>
       </div>
       <button class="interactive" id="btn-submit" type="submit">Sign in</button>
     </form>

@@ -1,12 +1,13 @@
 #sign-in-container {
   display: flex;
   flex-direction: column;
+  margin: 50px 0;
 }
 
 #sign-in-box {
-  height: 75vh;
   width: 66vw;
   max-width: 300px;
+  max-height: 75vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,5 +62,6 @@ app-close-cross {
 }
 
 .error-message {
+  height: 1em;
   color: red;
 }

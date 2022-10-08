@@ -92,4 +92,10 @@ hr {
   width: 100%;
 }
 
+#admin-icon {
+  margin: 5px;
+  width: 24px;
+  transform: translateY(-2px);
+}
+
 

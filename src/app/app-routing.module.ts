@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: ':username/decks', component: YourDecksComponent },
   { path: 'decks/new', component: NewDeckComponent },
-  { path: ':username/decks/:id', component: DeckDetailsComponent },
+  { path: 'decks/:id', component: DeckDetailsComponent },
   { path: ':username/menu', component: ShowcaseComponent },
   { path: 'error/not-found', component: NotFoundComponent },
   { path: 'error/unauthorized', component: UnauthorizedComponent }

@@ -19,6 +19,7 @@ export class SignInComponent implements OnInit {
   errorMessage: any;
   signInFailed: boolean = false;
 
+
   constructor(
     private _eref: ElementRef,
     private _auth: SignInService,
@@ -30,6 +31,7 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
+    this.signInFailed = false;
     console.log(this.username, this.password);
     this._auth.signInCall(this.username, this.password).subscribe(
       (response) => {

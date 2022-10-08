@@ -28,8 +28,8 @@ export class SessionService {
 
 
   signIn(token: Token) {
-    localStorage.setItem("token", token.token);
-    this.getLoggedAccount(token.token);
+    localStorage.setItem("token", token.value);
+    this.getLoggedAccount(token.value);
   }
 
   signOut() {
