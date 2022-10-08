@@ -1,8 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Account } from '../../security/models/account';
-import { SessionService } from '../../security/services/session.service';
-import { SignInService } from '../../security/services/sign-in.service';
+import { SessionService } from 'src/app/modules/security/services/session.service';
+import { SignInService } from 'src/app/modules/security/services/sign-in.service';
 
 @Component({
   host: { '(document:click)':'onClick($event)'},

@@ -75,6 +75,10 @@ a{
   cursor: pointer;
 }
 
+.hover-link {
+  cursor: pointer;
+}
+
 .hover-link:hover{
   background-color: black;
 }
