@@ -41,7 +41,7 @@ export class DeckService {
   }
 
   importCards(id: number, list: any): Observable<any> {
-    return this._http.put(environment.api.deckmenu + "/decks/update/from-list/" + id, list);
+    return this._http.put(environment.api.deckmenu + "/decks/update/from-list/" + id, list, { headers: this.authHeader });
   }
 
   patchIsOnTheMenu(id: number, value: boolean): Observable<Deck> {
