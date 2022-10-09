@@ -13,5 +13,6 @@ export interface Deck {
   categories: Category[];
   cards: DeckCard[];
   onTheMenu: boolean;
+  coverImage: string;
 
 }
