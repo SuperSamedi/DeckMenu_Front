@@ -40,12 +40,12 @@ export class DeckService {
     return this._http.get<{decks: Deck[]}>(environment.api.deckmenu + "/decks/all-showcase-decks/" + username);
   }
 
-  // getShowcaseDecks(username: string): Observable<AllDecksResponse> {
-  //   return this._http.get<AllDecksResponse>(environment.api.deckmenu + "/decks/all-showcase-decks/" + username)
-  // }
-
   importCards(id: number, list: any): Observable<any> {
     return this._http.put(environment.api.deckmenu + "/decks/update/from-list/" + id, list);
+  }
+
+  patchIsOnTheMenu(id: number, value: boolean): Observable<Deck> {
+    return this._http.patch<Deck>(environment.api.deckmenu + "/decks/is-on-the-menu/" + id, value, { headers: this.authHeader });
   }
 
   delete(id: number): Observable<Deck> {

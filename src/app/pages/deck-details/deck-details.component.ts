@@ -87,9 +87,9 @@ export class DeckDetailsComponent implements OnInit {
 
   onCardListSubmit() {
     console.log(this.addCardListForm.value);
-    this._deckService.importCards(this._route.snapshot.params["id"], this.addCardListForm.value).subscribe(response => {
+    this._deckService.importCards(this.deckId(), this.addCardListForm.value).subscribe(response => {
       console.log(response);
-      this._deckService.getDetails(this._route.snapshot.params["id"]).subscribe({
+      this._deckService.getDetails(this.deckId()).subscribe({
         next: (data: Deck) => {
           this.deck = data;
         }
@@ -101,6 +101,11 @@ export class DeckDetailsComponent implements OnInit {
     console.log("check was clicked!");
     if (this.deck) {
       this.deck.onTheMenu = !this.deck.onTheMenu;
+      this._deckService.patchIsOnTheMenu(this.deckId(), this.deck.onTheMenu).subscribe({
+        next: (updatedDeck: Deck) => {
+          this.deck = updatedDeck;
+        }
+      })
     }
   }
 
@@ -108,5 +113,9 @@ export class DeckDetailsComponent implements OnInit {
     this._deckService.delete(id).subscribe(() => {
       this._router.navigate(["decks"]);
     });
+  }
+
+  deckId(): number {
+    return this._route.snapshot.params["id"];
   }
 }
