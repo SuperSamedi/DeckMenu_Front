@@ -4,3 +4,27 @@
   gap: 5px;
   justify-content: center;
 }
+
+
+.btn-check {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  padding: 0.25em 0.75em;
+  gap: .5em;
+  border-radius: 10em;
+  color: white;
+  background-color: rgb(36, 36, 36);
+  border: 1px solid rgb(226, 76, 76);
+  cursor: pointer;
+  font-size: 0.75em;
+}
+
+.checked {
+  border: 1px solid rgb(91, 187, 27);
+}
+
+#img-check {
+  width: 0.75em;
+}
+
