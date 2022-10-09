@@ -1,6 +1,6 @@
-<div *ngIf="deck" >
+<div id="deck-details-container" *ngIf="deck" >
   <div id="deck-info">
-    <h1>{{ deck.name }} </h1>
+    <h1>{{ deck.name }}</h1>
     <p>{{ deck.description }}</p>
     <p>Format: {{ deck.format.name }}</p>
     <p>Chef: <a [routerLink]="['/' + deck.chef + '/menu']">{{ deck.chef }}</a></p>
@@ -17,6 +17,8 @@
 
     <a *ngIf="isOwner()" class="red" role="button" (click)="delete(deck.id)">Delete</a>
   </div>
+
+  <div id="deck-cover" [ngStyle]="{'background-image': 'url(' + deckCover + ')'}"></div>
 
   <form *ngIf="isOwner()" [formGroup]="addCardListForm" (ngSubmit)="onCardListSubmit()">
     <label for="card-list">Imports cards from text list:</label>

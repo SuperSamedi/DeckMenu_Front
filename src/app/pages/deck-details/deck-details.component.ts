@@ -67,6 +67,13 @@ export class DeckDetailsComponent implements OnInit {
     return false;
   }
 
+  get deckCover(): string {
+    if (this.deck && this.deck.coverImage) {
+      return this.deck.coverImage;
+    }
+    return "/assets/img/default-deck-cover-plains.jpg"
+  }
+
   get checkMarkImagePath(): string {
     if (this.deck) {
       if (this.deck.onTheMenu) {

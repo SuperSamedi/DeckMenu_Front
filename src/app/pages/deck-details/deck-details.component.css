@@ -1,3 +1,36 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+#deck-details-container {
+  width: auto;
+
+  --cover-height: 33vh;
+}
+
+#deck-cover {
+  height: var(--cover-height);
+  width: 67vw;
+  margin-right: 0;
+  margin-left: auto;
+  margin-bottom: 1em;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-position-y: top; */
+  background-position: right;
+}
+
+#deck-info {
+  position: absolute;
+  height: calc(var(--cover-height) - 1em) ;
+  width: calc(100% - 1em);
+  padding: 0.5em;
+  background-image: linear-gradient(to right, black 33%, rgba(0, 0, 0, 0));
+  /* box-shadow: 0 10px 10px black; */
+  border-bottom: 1px solid black;
+}
+
 .decklist {
   display: flex;
   flex-wrap: wrap;
