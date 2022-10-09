@@ -1,4 +1,4 @@
-<div *ngIf="($Deck | async) as deck" >
+<div *ngIf="deck" >
   <div id="deck-info">
     <h1>{{ deck.name }} </h1>
     <p>{{ deck.description }}</p>
@@ -7,6 +7,14 @@
     <ul>
       <li *ngFor="let category of deck.categories">{{ category.name }}</li>
     </ul>
+
+    <div *ngIf="isOwner()" id="cb-on-the-menu">
+      <div class="btn-check" [ngClass]="{'checked': deck.onTheMenu}" (click)="onButtonCheckClicked()">
+        <img id="img-check" [src]="checkMarkImagePath" [alt]="checkMarkAltMessage">
+        <span>On the Menu</span>
+      </div>
+    </div>
+
     <a *ngIf="isOwner()" class="red" role="button" (click)="delete(deck.id)">Delete</a>
   </div>
 
@@ -16,7 +24,7 @@
     <button type="submit" *ngIf="addCardListForm.valid">Import</button>
   </form>
 
-  <div class="decklist" *ngIf="($Deck | async) as deck">
+  <div class="decklist" *ngIf="deck">
     <img class="magic-card" *ngFor="let card of deck.cards" src={{card.card.imageURI}} alt={{card.card.name}}>
   </div>
 </div>

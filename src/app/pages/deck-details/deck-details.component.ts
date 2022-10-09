@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,9 +15,8 @@ import { Deck } from '../models/deck';
 })
 export class DeckDetailsComponent implements OnInit {
 
-  $Deck: Observable<Deck>;
   user: Account | null = null;
-  chef: string = "";
+  deck: Deck | null = null;
 
   addCardListForm = new FormGroup({
     addCardList: new FormControl("")
@@ -28,36 +28,85 @@ export class DeckDetailsComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _session: SessionService
-  ) {
-    this.$Deck = this._deckService.getDetails(this._route.snapshot.params["id"]);
-  }
+  ) { }
 
 
   ngOnInit(): void {
     this._session.$Account.subscribe(user => {
       this.user = user;
     });
-    this.$Deck.subscribe( data => this.chef = data.chef);
+    this._deckService.getDetails(this._route.snapshot.params["id"]).subscribe({
+      next: (data: Deck) => {
+        this.deck = data;
+        // this._isOnMenu = data.onTheMenu;
+      },
+      error: (e) => {
+        console.error("Error caught in DeckDetailsComponent.")
+        if (e instanceof HttpErrorResponse) {
+          console.log(`error status : ${e.status} ${e.statusText}`);
+          switch (e.status) {
+            case 403:
+              this._router.navigateByUrl("/error/unauthorized");
+              break;
+            case 404:
+              this._router.navigateByUrl("/error/not-found");
+              break;
+          }
+        }
+        else {
+          console.error("Something else happened.");
+        }
+      }
+    });
   }
 
   isOwner(): boolean {
-    if (this.user) {
-      return this.user.username === this.chef || this.user.roles.some((r: AccountRole) => r.role.roleName === "HEADCHEF");
+    if (this.user != null && this.deck != null) {
+      return this.user.username === this.deck.chef || this.user.roles.some((r: AccountRole) => r.role.roleName === "HEADCHEF");
     }
     return false;
   }
 
-  delete(id: number) {
-    this._deckService.delete(id).subscribe(() => {
-      this._router.navigate(["decks"]);
-    });
+  get checkMarkImagePath(): string {
+    if (this.deck) {
+      if (this.deck.onTheMenu) {
+        return "/assets/img/check-mark-32.png";
+      }
+    }
+    return "/assets/img/cross-32.png";
+  }
+
+  get checkMarkAltMessage(): string {
+    if (this.deck) {
+      if (this.deck.onTheMenu) {
+        return "checked";
+      }
+    }
+    return "unchecked";
   }
 
   onCardListSubmit() {
     console.log(this.addCardListForm.value);
     this._deckService.importCards(this._route.snapshot.params["id"], this.addCardListForm.value).subscribe(response => {
       console.log(response);
-      this.$Deck = this._deckService.getDetails(this._route.snapshot.params["id"]);
+      this._deckService.getDetails(this._route.snapshot.params["id"]).subscribe({
+        next: (data: Deck) => {
+          this.deck = data;
+        }
+      });
+    });
+  }
+
+  onButtonCheckClicked() {
+    console.log("check was clicked!");
+    if (this.deck) {
+      this.deck.onTheMenu = !this.deck.onTheMenu;
+    }
+  }
+
+  delete(id: number) {
+    this._deckService.delete(id).subscribe(() => {
+      this._router.navigate(["decks"]);
     });
   }
 }

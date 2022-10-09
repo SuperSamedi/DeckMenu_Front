@@ -3,7 +3,7 @@
 <hr>
 <ul>
   <li *ngFor="let deck of listOfDecks">
-    <a [routerLink]="[deck.id]">{{ deck.name }}</a>
+    <a [routerLink]="'/decks/' + [deck.id]">{{ deck.name }}</a>
     <a class="red" (click)="delete(deck.id)">Delete</a>
     <hr>
   </li>

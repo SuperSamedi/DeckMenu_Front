@@ -25,7 +25,7 @@ export class DeckService {
 
 
   create(createDeckForm: any): Observable<any> {
-    return this._http.post(environment.api.deckmenu + "/decks/new", createDeckForm);
+    return this._http.post(environment.api.deckmenu + "/decks/new", createDeckForm, { headers: this.authHeader });
   }
 
   getAll(username: string): Observable<AllDecksResponse> {
@@ -33,7 +33,7 @@ export class DeckService {
   }
 
   getDetails(id: number): Observable<Deck> {
-    return this._http.get<Deck>(environment.api.deckmenu + `/decks/` + id);
+    return this._http.get<Deck>(environment.api.deckmenu + `/decks/` + id, { headers: this.authHeader });
   }
 
   getShowcaseDecks(username: string): Observable<{decks: Deck[]}> {
@@ -50,7 +50,7 @@ export class DeckService {
 
   delete(id: number): Observable<Deck> {
     console.log("attempting to delete.");
-    return this._http.delete<Deck>(environment.api.deckmenu + "/decks/" + id);
+    return this._http.delete<Deck>(environment.api.deckmenu + "/decks/" + id, { headers: this.authHeader });
   }
 
 }
