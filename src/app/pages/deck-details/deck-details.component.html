@@ -7,24 +7,34 @@
     <ul>
       <li *ngFor="let category of deck.categories">{{ category.name }}</li>
     </ul>
+  </div>
 
+    <div id="deck-cover" [ngStyle]="{'background-image': 'url(' + deckCover + ')'}"></div>
+
+  <div id="settings">
     <div *ngIf="isOwner()" id="cb-on-the-menu">
       <div class="btn-check" [ngClass]="{'checked': deck.onTheMenu}" (click)="onButtonCheckClicked()">
         <img id="img-check" [src]="checkMarkImagePath" [alt]="checkMarkAltMessage">
         <span>On the Menu</span>
       </div>
     </div>
-
+    <a *ngIf="isOwner()" class="white" role="button" (click)="openImport()">Import cards</a>
     <a *ngIf="isOwner()" class="red" role="button" (click)="delete(deck.id)">Delete</a>
   </div>
 
-  <div id="deck-cover" [ngStyle]="{'background-image': 'url(' + deckCover + ')'}"></div>
-
-  <form *ngIf="isOwner()" [formGroup]="addCardListForm" (ngSubmit)="onCardListSubmit()">
-    <label for="card-list">Imports cards from text list:</label>
-    <textarea id="card-list" formControlName="addCardList" rows="5" cols="40" placeholder="1 Card per line&#13;&#10;Format example: &#13;&#10;5 Forest (dmu) 281&#13;&#10;1 Nissa, Who Shakes&#13;&#10;..."></textarea>
-    <button type="submit" *ngIf="addCardListForm.valid">Import</button>
-  </form>
+  <div id="import-overlay">
+    <div id="import-container">
+      <app-close-cross id="close-cross"></app-close-cross>
+      <div id="import-box">
+        <form id="card-import" *ngIf="isOwner()" [formGroup]="addCardListForm" (ngSubmit)="onCardListSubmit()">
+          <label for="card-list">Imports cards from text list:</label>
+          <!-- <textarea id="card-list" formControlName="addCardList" rows="5" cols="40" placeholder="1 Card per line&#13;&#10;Format example: &#13;&#10;5 Forest (dmu) 281&#13;&#10;1 Nissa, Who Shakes&#13;&#10;..."></textarea> -->
+          <textarea id="card-list" formControlName="addCardList" placeholder="1 Card per line&#13;&#10;Format example: &#13;&#10;5 Forest (dmu) 281&#13;&#10;1 Nissa, Who Shakes&#13;&#10;..."></textarea>
+          <button class="clickable btn-import" type="submit" *ngIf="addCardListForm.valid">Import</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <div class="decklist" *ngIf="deck">
     <img class="magic-card" *ngFor="let card of deck.cards" src={{card.card.imageURI}} alt={{card.card.name}}>

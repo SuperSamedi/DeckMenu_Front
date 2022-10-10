@@ -35,7 +35,7 @@ export class DeckDetailsComponent implements OnInit {
     this._session.$Account.subscribe(user => {
       this.user = user;
     });
-    this._deckService.getDetails(this._route.snapshot.params["id"]).subscribe({
+    this._deckService.getDetails(this.deckId()).subscribe({
       next: (data: Deck) => {
         this.deck = data;
         // this._isOnMenu = data.onTheMenu;
@@ -71,7 +71,7 @@ export class DeckDetailsComponent implements OnInit {
     if (this.deck && this.deck.coverImage) {
       return this.deck.coverImage;
     }
-    return "/assets/img/default-deck-cover-plains.jpg"
+    return "/assets/img/default-deck-cover-plains.jpg";
   }
 
   get checkMarkImagePath(): string {
@@ -114,6 +114,10 @@ export class DeckDetailsComponent implements OnInit {
         }
       })
     }
+  }
+
+  openImport() {
+
   }
 
   delete(id: number) {

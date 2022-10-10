@@ -14,5 +14,7 @@ export interface Deck {
   cards: DeckCard[];
   onTheMenu: boolean;
   coverImage: string;
+  power: number;
+  difficulty: number;
 
 }
