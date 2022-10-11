@@ -139,6 +139,14 @@ export class DeckDetailsComponent implements OnInit {
     });
   }
 
+  onQuantityModifyClicked(cardId: number, amount: number) {
+    this._deckService.patchCardQuantity(this.deckId(), { cardId: cardId, amount: amount }).subscribe({
+      next: (response: Deck) => {
+        this.deck = response;
+      }
+    });
+  }
+
   delete(id: number) {
     this._deckService.delete(id).subscribe(() => {
       this._router.navigate(["decks"]);

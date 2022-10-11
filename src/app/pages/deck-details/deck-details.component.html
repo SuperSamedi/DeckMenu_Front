@@ -46,9 +46,9 @@
     <div class="magic-card" *ngFor="let card of deck.cards" [ngStyle]="{'background-image': 'url(' + card.card.imageURI + ')'}">
       <div class="card-overlay">
         <div class="card-quantity-container">
-          <div class="clickable btn-quant" *ngIf="isOwner()" role="button">+</div>
+          <div class="clickable btn-quant" *ngIf="isOwner()" role="button" (click)="onQuantityModifyClicked(card.id, 1)">+</div>
           <div class="card-quantity">x{{ card.quantity }}</div>
-          <div class="clickable btn-quant" *ngIf="isOwner()" role="button">-</div>
+          <div class="clickable btn-quant" *ngIf="isOwner()" role="button" (click)="onQuantityModifyClicked(card.id, -1)">-</div>
         </div>
         <div class="clickable tooltip btn-change-cover" *ngIf="isOwner()" role="button" (click)="onChangeCoverClicked(card.card.artCrop)">
           <span class="tooltiptext">Select as cover image.</span>
