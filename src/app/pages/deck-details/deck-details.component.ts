@@ -131,6 +131,14 @@ export class DeckDetailsComponent implements OnInit {
     this.toggleCardImportVisibility();
   }
 
+  onChangeCoverClicked(newCover: string) {
+    this._deckService.patchCoverImage(this.deckId(), { newDeckImage: newCover }).subscribe({
+      next: (response: Deck) => {
+        this.deck = response;
+      }
+    });
+  }
+
   delete(id: number) {
     this._deckService.delete(id).subscribe(() => {
       this._router.navigate(["decks"]);
