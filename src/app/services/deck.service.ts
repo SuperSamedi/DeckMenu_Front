@@ -1,11 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AllDecksResponse } from '../pages/models/all-decks-response';
 import { Deck } from '../pages/models/deck';
-import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +24,7 @@ export class DeckService {
 
 
   create(createDeckForm: any): Observable<any> {
-    return this._http.post(environment.api.deckmenu + "/decks/new", createDeckForm);
+    return this._http.post(environment.api.deckmenu + "/decks/new", createDeckForm, { headers: this.authHeader });
   }
 
   getAll(username: string): Observable<AllDecksResponse> {
@@ -33,24 +32,24 @@ export class DeckService {
   }
 
   getDetails(id: number): Observable<Deck> {
-    return this._http.get<Deck>(environment.api.deckmenu + `/decks/` + id);
+    return this._http.get<Deck>(environment.api.deckmenu + `/decks/` + id, { headers: this.authHeader });
   }
 
   getShowcaseDecks(username: string): Observable<{decks: Deck[]}> {
     return this._http.get<{decks: Deck[]}>(environment.api.deckmenu + "/decks/all-showcase-decks/" + username);
   }
 
-  // getShowcaseDecks(username: string): Observable<AllDecksResponse> {
-  //   return this._http.get<AllDecksResponse>(environment.api.deckmenu + "/decks/all-showcase-decks/" + username)
-  // }
-
   importCards(id: number, list: any): Observable<any> {
-    return this._http.put(environment.api.deckmenu + "/decks/update/from-list/" + id, list);
+    return this._http.put(environment.api.deckmenu + "/decks/update/from-list/" + id, list, { headers: this.authHeader });
+  }
+
+  patchIsOnTheMenu(id: number, value: boolean): Observable<Deck> {
+    return this._http.patch<Deck>(environment.api.deckmenu + "/decks/is-on-the-menu/" + id, value, { headers: this.authHeader });
   }
 
   delete(id: number): Observable<Deck> {
     console.log("attempting to delete.");
-    return this._http.delete<Deck>(environment.api.deckmenu + "/decks/" + id);
+    return this._http.delete<Deck>(environment.api.deckmenu + "/decks/" + id, { headers: this.authHeader });
   }
 
 }

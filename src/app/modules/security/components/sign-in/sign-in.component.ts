@@ -55,10 +55,10 @@ export class SignInComponent implements OnInit {
                 console.log("error 401. isSignInFailed = " + this.signInFailed)
                 break;
               case 403:
-                this._router.navigateByUrl("/unauthorized");
+                this._router.navigateByUrl("/error/unauthorized");
                 break;
               case 404:
-                this._router.navigateByUrl("/not-found");
+                this._router.navigateByUrl("/error/not-found");
                 break;
             }
           }
