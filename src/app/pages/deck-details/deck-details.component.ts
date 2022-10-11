@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Account } from 'src/app/modules/security/models/account';
 import { AccountRole } from 'src/app/modules/security/models/account-role';
 import { SessionService } from 'src/app/modules/security/services/session.service';
@@ -18,6 +18,10 @@ export class DeckDetailsComponent implements OnInit {
   user: Account | null = null;
   deck: Deck | null = null;
 
+  // Card Import
+  isCardImportVisible: boolean = false;
+  cardImportVisibilityChange: Subject<boolean> = new Subject<boolean>();
+  cardsNotFound: string[] = [];
   addCardListForm = new FormGroup({
     addCardList: new FormControl("")
   })
@@ -28,7 +32,11 @@ export class DeckDetailsComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _session: SessionService
-  ) { }
+  ) {
+    this.cardImportVisibilityChange.subscribe(value => {
+      this.isCardImportVisible = value;
+    })
+  }
 
 
   ngOnInit(): void {
@@ -38,7 +46,6 @@ export class DeckDetailsComponent implements OnInit {
     this._deckService.getDetails(this.deckId()).subscribe({
       next: (data: Deck) => {
         this.deck = data;
-        // this._isOnMenu = data.onTheMenu;
       },
       error: (e) => {
         console.error("Error caught in DeckDetailsComponent.")
@@ -94,13 +101,13 @@ export class DeckDetailsComponent implements OnInit {
 
   onCardListSubmit() {
     console.log(this.addCardListForm.value);
-    this._deckService.importCards(this.deckId(), this.addCardListForm.value).subscribe(response => {
-      console.log(response);
-      this._deckService.getDetails(this.deckId()).subscribe({
-        next: (data: Deck) => {
-          this.deck = data;
-        }
-      });
+    this.cardsNotFound = [];
+    this._deckService.importCards(this.deckId(), this.addCardListForm.value).subscribe({
+      next: response => {
+        console.log(response);
+        this.deck = response.deck;
+        this.cardsNotFound = response.cardsNotFound;
+      }
     });
   }
 
@@ -116,8 +123,12 @@ export class DeckDetailsComponent implements OnInit {
     }
   }
 
-  openImport() {
+  toggleCardImportVisibility() {
+    this.cardImportVisibilityChange.next(!this.isCardImportVisible);
+  }
 
+  onCrossClicked() {
+    this.toggleCardImportVisibility();
   }
 
   delete(id: number) {

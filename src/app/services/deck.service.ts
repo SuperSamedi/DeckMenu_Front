@@ -1,11 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AllDecksResponse } from '../pages/models/all-decks-response';
 import { Deck } from '../pages/models/deck';
-import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
