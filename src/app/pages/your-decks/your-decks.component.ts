@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DeckService } from 'src/app/services/deck.service';
+import { AllDecksResponse } from '../models/all-decks-response';
 import { Deck } from '../models/deck';
 
 @Component({
@@ -10,15 +11,21 @@ import { Deck } from '../models/deck';
 })
 export class YourDecksComponent implements OnInit {
 
-  $deckList: Observable<Deck[]> | null = null;
+  // $AllDecksResponse: Observable<AllDecksResponse> | null = null;
+  listOfDecks: Deck[] = []
+
+  private _username: string = "";
 
   constructor(
-    private _deckService: DeckService
-  ) {
-  }
+    private _deckService: DeckService,
+    private _route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-    this.$deckList = this._deckService.getAll();
+    this._username = this._route.snapshot.params["username"];
+    this._deckService.getAll(this._username).subscribe((data: AllDecksResponse) => {
+      this.listOfDecks = data.decks;
+    });
   }
 
   delete(id: number) {

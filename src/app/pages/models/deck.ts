@@ -9,8 +9,12 @@ export interface Deck {
   name: string;
   description: string;
   format: Format;
+  chef: string;
   categories: Category[];
   cards: DeckCard[];
-  isOnTheMenu: boolean;
+  onTheMenu: boolean;
+  coverImage: string;
+  power: number;
+  difficulty: number;
 
 }

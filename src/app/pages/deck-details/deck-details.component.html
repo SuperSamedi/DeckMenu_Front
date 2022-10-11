@@ -1,20 +1,53 @@
-<div *ngIf="($deckObs | async) as deck" >
-  <h1>{{ deck.name }} </h1>
-  <p>{{ deck.description }}</p>
-  <p>Format: {{ deck.format.name }}</p>
-  <ul>
-    <li *ngFor="let category of deck.categories">{{ category.name }}</li>
-  </ul>
-  <a class="red" role="button" (click)="delete(deck.id)">Delete</a>
+<div id="deck-details-container" *ngIf="deck">
+  <div id="deck-info">
+    <h1>{{ deck.name }}</h1>
+    <p>{{ deck.description }}</p>
+    <p>Format: {{ deck.format.name }}</p>
+    <p>Chef: <a [routerLink]="['/' + deck.chef + '/menu']">{{ deck.chef }}</a></p>
+    <ul>
+      <li *ngFor="let category of deck.categories">{{ category.name }}</li>
+    </ul>
+  </div>
+
+  <div id="deck-cover" [ngStyle]="{'background-image': 'url(' + deckCover + ')'}"></div>
+
+  <div id="settings">
+    <div *ngIf="isOwner()" id="cb-on-the-menu">
+      <div class="btn-check" [ngClass]="{'checked': deck.onTheMenu}" (click)="onButtonCheckClicked()">
+        <img id="img-check" [src]="checkMarkImagePath" [alt]="checkMarkAltMessage">
+        <span>On the Menu</span>
+      </div>
+    </div>
+    <a *ngIf="isOwner()" class="white" role="button" (click)="toggleCardImportVisibility()">Import cards</a>
+    <a *ngIf="isOwner()" class="red" role="button" (click)="delete(deck.id)">Delete the deck</a>
+  </div>
+
+  <div id="import-overlay" *ngIf="isCardImportVisible">
+    <div id="import-container">
+      <app-close-cross id="close-cross" (click)="toggleCardImportVisibility()"></app-close-cross>
+      <div id="import-box">
+        <form id="card-import" *ngIf="isOwner()" [formGroup]="addCardListForm" (ngSubmit)="onCardListSubmit()">
+          <label for="card-list">Imports cards from text list:</label>
+          <textarea id="card-list" class="scroll" formControlName="addCardList"
+            placeholder="1 Card per line&#13;&#10;Format example: &#13;&#10;5 Forest (dmu) 281&#13;&#10;1 Nissa, Who Shakes&#13;&#10;..."></textarea>
+          <div id="cards-not-found-box" *ngIf="cardsNotFound.length > 0">
+            <label>Cards not found:</label>
+            <ul id="cards-not-found-list" class="scroll">
+              <li *ngFor="let line of cardsNotFound">{{ line }}</li>
+            </ul>
+          </div>
+          <button class="clickable btn-import" type="submit" *ngIf="addCardListForm.valid">Import</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="decklist" *ngIf="deck">
+    <div class="magic-card" *ngFor="let card of deck.cards" [ngStyle]="{'background-image': 'url(' + card.card.imageURI + ')'}">
+      <div class="card-overlay">
+        <div></div>
+      </div>
+    </div>
+    <!-- <img class="magic-card" *ngFor="let card of deck.cards" src={{ card.card.imageURI }} alt={{ card.card.name }}> -->
+  </div>
 </div>
-
-<form [formGroup]="addCardListForm" (ngSubmit)="onCardListSubmit()">
-  <label for="card-list">Imports cards from text list:</label>
-  <textarea id="card-list" formControlName="addCardList" rows="5" cols="40" placeholder="1 Card per line&#13;&#10;Format example: &#13;&#10;5 Forest (dmu) 281&#13;&#10;1 Nissa, Who Shakes&#13;&#10;..."></textarea>
-  <button type="submit" *ngIf="addCardListForm.valid">Import</button>
-</form>
-
-<div class="decklist" *ngIf="($deckObs | async) as deck">
-  <img class="magic-card" *ngFor="let card of deck.cards" src={{card.card.imageURI}} alt={{card.card.name}}>
-</div>
-

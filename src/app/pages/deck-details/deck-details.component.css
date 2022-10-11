@@ -1,6 +1,189 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+#deck-details-container {
+  width: auto;
+
+  --cover-height: 33vh;
+}
+
+#deck-cover {
+  height: var(--cover-height);
+  width: 67vw;
+  margin-right: 0;
+  margin-left: auto;
+  margin-bottom: 1em;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-position-y: top; */
+  background-position: right;
+}
+
+#deck-info {
+  position: absolute;
+  height: calc(var(--cover-height) - 1em) ;
+  width: calc(100% - 1em);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.5em;
+  padding: 0.5em;
+  background-image: linear-gradient(to right, black 33%, rgba(0, 0, 0, 0));
+  /* box-shadow: 0 10px 10px black; */
+  border-bottom: 1px solid black;
+}
+
 .decklist {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
   justify-content: center;
+}
+
+
+.btn-check {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  padding: 0.25em 0.75em;
+  gap: .5em;
+  border-radius: 10em;
+  color: white;
+  background-color: rgb(36, 36, 36);
+  border: 1px solid rgb(226, 76, 76);
+  cursor: pointer;
+  font-size: 0.75em;
+}
+
+.checked {
+  border: 1px solid rgb(91, 187, 27);
+}
+
+#img-check {
+  width: 0.75em;
+}
+
+#settings {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  padding-left: .5em;
+}
+
+#import-overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.50);
+}
+
+#import-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#import-box {
+  background-color: rgb(53, 53, 53);
+  border-radius: 1em;
+  width: 66vw;
+  max-width: 300px;
+  max-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em 1em;
+  border: 1px solid var(--highlight-color);
+}
+
+#card-import {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#card-import textarea {
+  padding: 0.25em;
+  background-color: rgb(34, 34, 34);
+  border: 1px solid black;
+  color: white;
+  width: 100%;
+  height: 10em;
+  box-sizing: border-box;
+  margin: .125em 0 .5em 0;
+}
+
+.btn-import {
+  width: 75%;
+  padding: .5em;
+  margin: 2em auto;
+  border-radius: 10em;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: var(--main-theme-color);
+  color: white;
+  font-size: 1.25em;
+}
+
+.form-action-line {
+  display: flex;
+  gap: 1em;
+}
+
+.white {
+  color: white;
+}
+
+app-close-cross {
+  align-self: flex-end;
+  margin: 0.5rem;
+  transform: translateX(calc(0.5rem + 16px));
+}
+
+#cards-not-found-list {
+  max-height: 5em;
+  background-color: rgb(80, 0, 0);
+  border: 1px solid red;
+  padding: .25em;
+  margin: .125em 0 .5em 0;
+}
+
+.scroll {
+  overflow: auto;
+}
+.scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scroll::-webkit-scrollbar-corner {
+  border-radius: 50%;
+  background-color: var(--highlight-color);
+}
+.scroll::-webkit-scrollbar-track {
+  padding: 10px;
+}
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--highlight-color);
+}
+.scroll::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+}
+
+.magic-card {
+  position: relative;
+}
+
+.card-overlay {
+  /* position: absolute; */
+  width: 100%;
+  height: 100%;
+  /* background-color: rgba(38, 215, 112, 0.682); */
 }

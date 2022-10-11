@@ -1,1 +1,44 @@
-<p>showcase works!</p>
+<!-- <h2>{{ username }}'s Menu</h2>
+<hr>
+<ul *ngIf="($AllDecksResponse | async) as response">
+  <li *ngFor="let deck of response.decks">
+    <a [routerLink]="['/decks/', deck.id]">{{ deck.name }}</a>
+    <hr>
+  </li>
+</ul> -->
+<div id="deck-menu-container">
+  <h2 id="menu-name">{{ username }}'s Menu</h2>
+  <hr>
+  <p class="stats" [ngPlural]="decks.length">
+      <ng-template ngPluralCase="=0">0 deck</ng-template>
+      <ng-template ngPluralCase="=1">{{ decks.length }} deck</ng-template>
+      <ng-template ngPluralCase="other">{{ decks.length }} decks</ng-template>
+  </p>
+  <ul id="deck-list">
+    <li class="deck-display" *ngFor="let deck of decks" (click)="onDeckClicked(deck.id)">
+      <div class="display-content">
+        <div class="deck-name">{{ deck.name }}</div>
+        <div class="cover-info">
+          <div class="deck-cover" [ngStyle]="{'background-image': 'url(' + deckCoverImage(deck) + ')'}"></div>
+          <div class="deck-info">
+            <p class="description">description k,kr,vefmk,bfem  v,r,kvepk,vr efv</p>
+            <div id="power-and-difficulty">
+              <div class="stats-with-stars">
+                <div>Power:</div>
+                <div class="stars">
+                  <img class="star" *ngFor="let star of [1, 2, 3, 4, 5]" [src]="deck.power >= star ? '/assets/img/star-icon_filled.png' : '/assets/img/star-icon_empty.png'" alt="">
+                </div>
+              </div>
+              <div class="stats-with-stars">
+                <div>Difficulty:</div>
+                <div class="stars">
+                  <img class="star" *ngFor="let star of [1, 2, 3, 4, 5]" [src]="deck.difficulty >= star ? '/assets/img/star-icon_filled.png' : '/assets/img/star-icon_empty.png'" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
