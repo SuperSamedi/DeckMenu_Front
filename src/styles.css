@@ -62,7 +62,7 @@ hr {
 .magic-card:hover {
   outline: 1px  solid var(--main-theme-color);
   transition: all 0.1s ease;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 app-close-cross {

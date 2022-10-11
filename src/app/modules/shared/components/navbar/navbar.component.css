@@ -63,7 +63,7 @@ a{
   outline: 1px solid black;
   border-radius: 0.5em;
   padding-bottom: 2em;
-  z-index: 999999;
+  z-index: 9999;
 }
 
 #options-list {
