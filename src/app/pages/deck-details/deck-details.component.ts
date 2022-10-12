@@ -80,16 +80,16 @@ export class DeckDetailsComponent implements OnInit {
     if (this.deck && this.deck.coverImage) {
       return this.deck.coverImage;
     }
-    return "/assets/img/default-deck-cover-plains.jpg";
+    return "./assets/img/default-deck-cover-plains.jpg";
   }
 
   get checkMarkImagePath(): string {
     if (this.deck) {
       if (this.deck.onTheMenu) {
-        return "/assets/img/check-mark-32.png";
+        return "./assets/img/check-mark-32.png";
       }
     }
-    return "/assets/img/cross-32.png";
+    return "./assets/img/cross-32.png";
   }
 
   get checkMarkAltMessage(): string {

@@ -26,13 +26,13 @@
               <div class="stats-with-stars">
                 <div>Power:</div>
                 <div class="stars">
-                  <img class="star" *ngFor="let star of [1, 2, 3, 4, 5]" [src]="deck.power >= star ? '/assets/img/star-icon_filled.png' : '/assets/img/star-icon_empty.png'" alt="">
+                  <img class="star" *ngFor="let star of [1, 2, 3, 4, 5]" [src]="deck.power >= star ? './assets/img/star-icon_filled.png' : './assets/img/star-icon_empty.png'" alt="rating star">
                 </div>
               </div>
               <div class="stats-with-stars">
                 <div>Difficulty:</div>
                 <div class="stars">
-                  <img class="star" *ngFor="let star of [1, 2, 3, 4, 5]" [src]="deck.difficulty >= star ? '/assets/img/star-icon_filled.png' : '/assets/img/star-icon_empty.png'" alt="">
+                  <img class="star" *ngFor="let star of [1, 2, 3, 4, 5]" [src]="deck.difficulty >= star ? './assets/img/star-icon_filled.png' : './assets/img/star-icon_empty.png'" alt="rating star">
                 </div>
               </div>
             </div>
