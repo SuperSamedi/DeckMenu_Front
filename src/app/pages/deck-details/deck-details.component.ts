@@ -8,6 +8,7 @@ import { AccountRole } from 'src/app/modules/security/models/account-role';
 import { SessionService } from 'src/app/modules/security/services/session.service';
 import { DeckService } from 'src/app/services/deck.service';
 import { Deck } from '../models/deck';
+import { DeckCard } from '../models/deckcard';
 
 @Component({
   templateUrl: './deck-details.component.html',
@@ -46,6 +47,7 @@ export class DeckDetailsComponent implements OnInit {
     this._deckService.getDetails(this.deckId()).subscribe({
       next: (data: Deck) => {
         this.deck = data;
+        this.sortCardsByName(this.deck.cards);
       },
       error: (e) => {
         console.error("Error caught in DeckDetailsComponent.")
@@ -107,6 +109,7 @@ export class DeckDetailsComponent implements OnInit {
         console.log(response);
         this.deck = response.deck;
         this.cardsNotFound = response.cardsNotFound;
+        this.sortCardsByName(this.deck!.cards);
       }
     });
   }
@@ -118,6 +121,7 @@ export class DeckDetailsComponent implements OnInit {
       this._deckService.patchIsOnTheMenu(this.deckId(), this.deck.onTheMenu).subscribe({
         next: (updatedDeck: Deck) => {
           this.deck = updatedDeck;
+          this.sortCardsByName(this.deck.cards);
         }
       })
     }
@@ -135,6 +139,16 @@ export class DeckDetailsComponent implements OnInit {
     this._deckService.patchCoverImage(this.deckId(), { newDeckImage: newCover }).subscribe({
       next: (response: Deck) => {
         this.deck = response;
+        this.sortCardsByName(this.deck.cards);
+      }
+    });
+  }
+
+  onQuantityModifyClicked(cardId: number, amount: number) {
+    this._deckService.patchCardQuantity(this.deckId(), { cardId: cardId, amount: amount }).subscribe({
+      next: (response: Deck) => {
+        this.deck = response;
+        this.sortCardsByName(this.deck.cards);
       }
     });
   }
@@ -143,6 +157,33 @@ export class DeckDetailsComponent implements OnInit {
     this._deckService.delete(id).subscribe(() => {
       this._router.navigate(["decks"]);
     });
+  }
+
+  sortCardsByName(array: DeckCard[]) {
+    if (array) {
+      array.sort((c1, c2) => {
+        if (c1.card.name > c2.card.name) {
+          return 1;
+        }
+
+        if (c1.card.name < c2.card.name) {
+          return -1
+        }
+
+        return 0;
+      });
+    }
+  }
+
+  get cardTotal(): number {
+    let x: number = 0;
+    if (this.deck) {
+      for (let i = 0; i < this.deck.cards.length; i++) {
+        const element = this.deck.cards[i];
+        x += element.quantity;
+      }
+    }
+    return x;
   }
 
   deckId(): number {

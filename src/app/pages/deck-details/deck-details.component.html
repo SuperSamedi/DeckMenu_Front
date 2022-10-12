@@ -42,19 +42,28 @@
     </div>
   </div>
 
-  <div class="decklist" *ngIf="deck">
-    <div class="magic-card" *ngFor="let card of deck.cards" [ngStyle]="{'background-image': 'url(' + card.card.imageURI + ')'}">
-      <div class="card-overlay">
-        <div class="card-quantity-container">
-          <div class="clickable btn-quant" *ngIf="isOwner()" role="button">+</div>
-          <div class="card-quantity">x{{ card.quantity }}</div>
-          <div class="clickable btn-quant" *ngIf="isOwner()" role="button">-</div>
-        </div>
-        <div class="clickable tooltip btn-change-cover" *ngIf="isOwner()" role="button" (click)="onChangeCoverClicked(card.card.artCrop)">
-          <span class="tooltiptext">Select as cover image.</span>
+  <div id="deck-details-main-container">
+    <h3>Deck list</h3>
+    <p class="card-total" [ngPlural]="cardTotal">
+      <ng-template ngPluralCase="=0">0 card</ng-template>
+      <ng-template ngPluralCase="=1">1 card</ng-template>
+      <ng-template ngPluralCase="other">{{ cardTotal }} cards</ng-template>
+    </p>
+
+    <div id="decklist" *ngIf="deck">
+      <div class="magic-card" *ngFor="let card of deck.cards" [ngStyle]="{'background-image': 'url(' + card.card.imageURI + ')'}">
+        <div class="card-overlay">
+          <div class="card-quantity-container">
+            <div class="clickable btn-quant" *ngIf="isOwner()" role="button" (click)="onQuantityModifyClicked(card.id, 1)">+</div>
+            <div class="card-quantity">x{{ card.quantity }}</div>
+            <div class="clickable btn-quant" *ngIf="isOwner()" role="button" (click)="onQuantityModifyClicked(card.id, -1)">-</div>
+          </div>
+          <div class="clickable tooltip btn-change-cover" *ngIf="isOwner()" role="button" (click)="onChangeCoverClicked(card.card.artCrop)">
+            <span class="tooltiptext">Select as cover image.</span>
+          </div>
         </div>
       </div>
+      <!-- <img class="magic-card" *ngFor="let card of deck.cards" src={{ card.card.imageURI }} alt={{ card.card.name }}> -->
     </div>
-    <!-- <img class="magic-card" *ngFor="let card of deck.cards" src={{ card.card.imageURI }} alt={{ card.card.name }}> -->
   </div>
 </div>
