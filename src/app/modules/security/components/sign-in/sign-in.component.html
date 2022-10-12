@@ -6,18 +6,18 @@
     <form id="sign-in-form" (submit)="onSubmit()">
       <div class="form-field">
         <label for="in-username">Username</label>
-        <input class="interactive form-txt-input" type="text" name="username" id="in-username" [(ngModel)]="username">
+        <input class="in in-txt" type="text" name="username" id="in-username" [(ngModel)]="username">
       </div>
 
       <div class="form-field">
         <label for="in-password">Password</label>
-        <input class="interactive form-txt-input" type="password" name="password" id="in-password" [(ngModel)]="password">
+        <input class="in in-txt" type="password" name="password" id="in-password" [(ngModel)]="password">
       </div>
 
       <div class="error-message">
           <p *ngIf="signInFailed">Incorrect username or password.</p>
       </div>
-      <button class="interactive" id="btn-submit" type="submit">Sign in</button>
+      <button class="clickable" id="btn-submit" type="submit">Sign in</button>
     </form>
   </div>
 </div>

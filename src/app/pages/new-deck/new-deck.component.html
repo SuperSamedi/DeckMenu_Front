@@ -1,11 +1,18 @@
-<h3>Add Deck</h3>
-<hr>
-<form [formGroup]="newDeckForm" (ngSubmit)="onSubmit()">
-  <label for="in-deckname">Name: </label>
-  <input type="text" name="deckName" id="in-deckname" placeholder="Deck Name" formControlName="name" required>
-  <label for="in-format">Format: </label>
-  <select name="formats" id="formats" formControlName="formatId">
-    <option *ngFor="let format of ($Formats | async)" [value]="format.id">{{ format.name }}</option>
-  </select>
-  <button type="submit" *ngIf="newDeckForm.valid">Create</button>
-</form>
+<div id="new-deck-page-container">
+  <h3>Add Deck</h3>
+  <hr>
+  <form [formGroup]="newDeckForm" (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <label for="in-deckname">Name: </label>
+      <input class="in in-txt" type="text" name="deckName" id="in-deckname" placeholder="Deck Name" formControlName="name" required>
+    </div>
+
+    <div class="form-field">
+      <label for="in-format">Format: </label>
+      <select class="in clickable" name="formats" id="formats" formControlName="formatId">
+        <option *ngFor="let format of ($Formats | async)" [value]="format.id">{{ format.name }}</option>
+      </select>
+    </div>
+    <button class="clickable" type="submit" *ngIf="newDeckForm.valid">Create</button>
+  </form>
+</div>
