@@ -47,6 +47,14 @@ export class DeckService {
     return this._http.patch<Deck>(environment.api.deckmenu + "/decks/is-on-the-menu/" + id, value, { headers: this.authHeader });
   }
 
+  patchCoverImage(id: number, newCoverImage: any): Observable<Deck> {
+    return this._http.patch<Deck>(environment.api.deckmenu + "/decks/cover/" + id, newCoverImage, { headers: this.authHeader });
+  }
+
+  patchCardQuantity(id: number, patchForm: any): Observable<Deck> {
+    return this._http.patch<Deck>(environment.api.deckmenu + "/decks/card-quantity/" + id, patchForm, { headers: this.authHeader });
+  }
+
   delete(id: number): Observable<Deck> {
     console.log("attempting to delete.");
     return this._http.delete<Deck>(environment.api.deckmenu + "/decks/" + id, { headers: this.authHeader });
