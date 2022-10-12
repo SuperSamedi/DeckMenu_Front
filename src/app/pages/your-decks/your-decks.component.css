@@ -1,3 +1,35 @@
-a {
-  width: 100%
+:host {
+  width: 100%;
+}
+
+#your-decks-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2em 2em;
+  box-sizing: border-box;
+}
+
+.deck-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+hr {
+  width: 100%;
+}
+
+ul {
+  margin: 1em 0;
+}
+
+li {
+  padding: 0.5em;
+  background-color: var(--bg-color);
+  border-top: 1px solid var(--highlight-color);
+}
+
+li:hover {
+  background-color: black;
+
 }
