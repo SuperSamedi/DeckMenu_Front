@@ -1,0 +1,10 @@
+#search-bar-container {
+  visibility: visible;
+  margin: 3em 0;
+  display: flex;
+  flex-direction: column;
+}
+#search-bar-container input {
+  margin: 0.25em 0em;
+  font-size: 1.25em;
+}

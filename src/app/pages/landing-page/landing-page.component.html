@@ -6,8 +6,11 @@
   <h1>Present them a</h1>
   <h2 id="title">Deck Menu</h2>
 
-  <div id="search-bar-container">
+  <!-- Custom event binding -->
+  <search-bar (searchTextChanged)="onSearchTextEntered($event)"></search-bar>
+
+  <!-- <div id="search-bar-container">
     <label for="user-search-bar">Look for a deck chef:</label>
-    <input type="search" name="user-search" id="user-search-bar" >
-  </div>
+    <input type="search" name="user-search" id="user-search-bar" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChange()">
+  </div> -->
 </div>
