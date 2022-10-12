@@ -34,27 +34,6 @@
 
 }
 
-.form-txt-input {
-  height: 2em;
-  padding: 0 0.5em;
-}
-
-#btn-submit {
-  width: 85%;
-  height: 3em;
-  margin: 1em;
-  border-radius: 10em;
-  border: none;
-  font-weight: bold;
-  font-size: 1rem;
-  background-color: var(--main-theme-color);
-  color: white;
-}
-
-.interactive:hover {
-  cursor: pointer;
-}
-
 app-close-cross {
   align-self: flex-end;
   margin: 0.5rem;

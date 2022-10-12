@@ -78,3 +78,43 @@ app-close-cross {
 .error-message {
   color: var(--red-color);
 }
+
+.in {
+  padding: 0.5em;
+  color: white;
+  font-size: 1.125em;
+  background-color: var(--secondary-bg-color);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--highlight-color);
+}
+.in:hover {
+  outline: 1px solid white;
+}
+.in-txt {
+  margin: 0.25em 0em;
+  border-bottom-color: var(--main-theme-color);
+  transition: .1s;
+}
+.in-txt:focus {
+  border-bottom-width: 3px;
+  outline: 1px solid white;
+}
+select {
+  border-radius: 0.5em;
+}
+select:focus {
+  border-width: 3px;
+  border-color: var(--main-theme-color);
+}
+button {
+  width: 85%;
+  height: 3em;
+  margin: 1em;
+  border-radius: 10em;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: var(--main-theme-color);
+  color: white;
+}
