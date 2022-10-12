@@ -223,7 +223,7 @@ app-close-cross {
 }
 
 .btn-change-cover {
-  background-image: url("/assets/img/picture-icon_active.png");
+  background-image: url('/../assets/img/picture-icon_active.png');
   background-size: cover;
   width: 1.75em;
   aspect-ratio: 20/17;
