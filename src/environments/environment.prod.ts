@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   api: {
-    deckmenu: 'http://localhost:8080/api',
+    deckmenu: 'https://deck-menu.herokuapp.com/api',
     scryfall: 'https://api.scryfall.com'
   }
 };
