@@ -33,11 +33,12 @@
   border-bottom: 1px solid black;
 }
 
-.decklist {
+#decklist {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
   justify-content: center;
+  padding: 1em 0;
 }
 
 
@@ -202,7 +203,6 @@ app-close-cross {
   width: max-content;
   gap: .125em;
 }
-
 .card-quantity {
   min-width: 2em;
   padding: .33em;
@@ -211,7 +211,6 @@ app-close-cross {
   font-weight: bold;
   text-align: center;
 }
-
 .btn-quant {
   background-color: black;
   border-radius: 2em;
@@ -236,7 +235,6 @@ app-close-cross {
   position: relative;
   display: inline-block;
 }
-
 .tooltip .tooltiptext {
   position: absolute;
   visibility: hidden;
@@ -250,7 +248,14 @@ app-close-cross {
   border-radius: .5em;
   z-index: 1;
 }
-
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+#deck-details-main-container {
+  padding: 2em .5em;
+}
+
+#decklist {
+
 }

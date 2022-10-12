@@ -7,7 +7,8 @@
 
 :root {
   --main-theme-color: rgb(255, 120, 142);
-  --bg-color: rgb(29, 29, 29);
+  --bg-color: rgb(33, 33, 33);
+  --secondary-bg-color: rgb(40, 40, 40);
   --red-color: rgb(181, 18, 18);
   --highlight-color: rgb(113, 113, 113);
   --contrast-color: white;
@@ -49,14 +50,17 @@ hr {
 }
 
 .magic-card {
-  width: 45%;
+  /* width: 49%; */
   max-width: 63.5mm;
+  min-width: 58mm;
+  /* min-width: 63.5mm; */
   aspect-ratio: 635/889;
   background-image: url("/assets/img/card-back.jpg");
   border-radius: 5%;
   background-size: cover;
   border-right: 1px solid rgba(255, 255, 224, 0.3);
   border-bottom: 1px solid rgba(255, 255, 224, 0.3);
+  flex-grow: 1;
 }
 
 .magic-card:hover {
