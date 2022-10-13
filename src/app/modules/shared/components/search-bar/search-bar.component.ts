@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { debounceTime, distinctUntilChanged, filter, fromEvent, map } from 'rxjs';
 
 @Component({
   selector: 'search-bar',
@@ -9,6 +10,9 @@ import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from
 export class SearchBarComponent implements OnInit {
 
   enteredSearchValue: string = "";
+  // searchBar = document.getElementById('search-bar') as HTMLInputElement;
+
+  // @ViewChild('input') input: ElementRef;
 
   // Custom Event, emitting a string
   @Output()
@@ -26,4 +30,7 @@ export class SearchBarComponent implements OnInit {
     this.searchTextChanged.emit(this.enteredSearchValue);
   }
 
+  onSearchSubmit() {
+    this.searchTextChanged.emit(this.enteredSearchValue);
+  }
 }

@@ -9,6 +9,14 @@
   <!-- Custom event binding -->
   <search-bar (searchTextChanged)="onSearchTextEntered($event)"></search-bar>
 
+  <div id="user-search-results">
+    <ul id="usernames-list">
+      <li class="clickable" *ngFor="let username of usernames" [routerLink]="[username] + '/menu'">
+        {{username}}
+      </li>
+    </ul>
+  </div>
+
   <!-- <div id="search-bar-container">
     <label for="user-search-bar">Look for a deck chef:</label>
     <input type="search" name="user-search" id="user-search-bar" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChange()">

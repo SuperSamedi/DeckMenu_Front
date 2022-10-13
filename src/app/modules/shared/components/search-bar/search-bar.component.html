@@ -1,4 +1,9 @@
 <div id="search-bar-container">
-  <label for="user-search-bar">Look for a deck chef:</label>
-  <input class="in in-txt" type="search" name="user-search" id="user-search-bar" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()">
+  <!-- <label for="user-search-bar">Look for a deck chef:</label> -->
+  <!-- <input class="in in-txt" id="user-search-bar" name="user-search" type="search" placeholder="Search for a deck chef..." [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()"> -->
+  <input class="in in-txt" id="search-bar" type="search" placeholder="Search for a deck chef..."
+    [(ngModel)]="enteredSearchValue" (keyup.enter)="onSearchSubmit()">
+  <div class="clickable" id="btn-search-bar-submit" role="button" (click)="onSearchSubmit()">
+    <img src="./assets/img/search-64.png" alt="">
+  </div>
 </div>

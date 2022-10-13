@@ -1,5 +1,12 @@
+:host {
+  width: 100%;
+}
+
 #landing-page-container {
   padding: 5em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 p {
@@ -16,8 +23,31 @@ h1 {
 #title {
   font-size: 2.5em;
   text-align: center;
+  color: var(--main-theme-color);
   margin-top: 0;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#usernames-list li {
+  padding: 0.5em;
+  border-bottom: 1px solid var(--highlight-color);
+}
+
+#usernames-list li:hover {
+  background-color: black;
+}
+
+#usernames-list li:nth-child(2n) {
+  background-color: var(--secondary-bg-color);
+}
+
+search-bar {
+  width: 75%;
+  display: block;
+}
+
+#user-search-results {
+  width: 75%;
 }
 
 
