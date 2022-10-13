@@ -9,7 +9,8 @@
   <!-- Custom event binding -->
   <search-bar (searchTextChanged)="onSearchTextEntered($event)"></search-bar>
 
-  <div id="user-search-results">
+  <div *ngIf="usernames.length > 0" id="user-search-results">
+    <h3>Deck chefs:</h3>
     <ul id="usernames-list">
       <li class="clickable" *ngFor="let username of usernames" [routerLink]="[username] + '/menu'">
         {{username}}

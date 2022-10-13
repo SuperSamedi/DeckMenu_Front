@@ -31,6 +31,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   onSearchSubmit() {
+    this.enteredSearchValue.trim();
     this.searchTextChanged.emit(this.enteredSearchValue);
   }
 }
