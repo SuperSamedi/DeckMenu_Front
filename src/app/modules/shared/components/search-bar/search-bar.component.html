@@ -1,0 +1,8 @@
+<div id="search-bar-container">
+  <!-- <div id="search-bar-box"> -->
+    <input id="search-bar" type="search" placeholder="Search for a deck chef..." [(ngModel)]="enteredSearchValue" (keyup.enter)="onSearchSubmit()">
+    <div class="clickable" id="btn-search-bar-submit" role="button" (click)="onSearchSubmit()">
+      <img id="search-btn-img" src="./assets/img/search-64.png" alt="">
+    </div>
+  <!-- </div> -->
+</div>
