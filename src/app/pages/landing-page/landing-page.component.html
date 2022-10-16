@@ -6,8 +6,20 @@
   <h1>Present them a</h1>
   <h2 id="title">Deck Menu</h2>
 
-  <div id="search-bar-container">
-    <label for="user-search-bar">Look for a deck chef:</label>
-    <input type="search" name="user-search" id="user-search-bar" >
+  <!-- Custom event binding -->
+  <search-bar (searchTextChanged)="onSearchTextEntered($event)"></search-bar>
+
+  <div *ngIf="usernames.length > 0" id="user-search-results">
+    <h3>Deck chefs:</h3>
+    <ul id="usernames-list">
+      <li class="clickable" *ngFor="let username of usernames" [routerLink]="[username] + '/menu'">
+        {{username}}
+      </li>
+    </ul>
   </div>
+
+  <!-- <div id="search-bar-container">
+    <label for="user-search-bar">Look for a deck chef:</label>
+    <input type="search" name="user-search" id="user-search-bar" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChange()">
+  </div> -->
 </div>

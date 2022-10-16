@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   templateUrl: './landing-page.component.html',
@@ -6,9 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  searchText: string = "";
+  usernames: string[] = [];
+
+
+  constructor(
+    private _accountService: AccountService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+
+  onSearchTextEntered(searchValue: string) {
+    this.searchText = searchValue;
+    console.log(this.searchText);
+    this._accountService.searchUsernames(searchValue).subscribe({
+      next: (response: { usernames: string[] }) => {
+        console.log(response);
+        this.usernames = response.usernames;
+      }
+    });
   }
 
 }

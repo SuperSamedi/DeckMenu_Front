@@ -49,4 +49,12 @@ export class SessionService {
       this._account.next(data)
     });
   }
+
+  get token(): string | null {
+    return localStorage.getItem("token");
+  }
+
+  get authHeader(): HttpHeaders {
+    return new HttpHeaders().append("Authorization", `Bearer ${this.token}`);
+  }
 }

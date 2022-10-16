@@ -1,9 +1,17 @@
+:host {
+  width: 100%;
+}
+
 #landing-page-container {
   padding: 5em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 p {
   text-align: center;
+  padding: 0.5em;
 }
 
 h1 {
@@ -11,34 +19,46 @@ h1 {
   text-align: center;
   font-size: 1.5em;
   font-weight: normal;
+  padding: 0.5em;
+}
+
+h2 {
+  padding: 0.5em;
 }
 
 #title {
   font-size: 2.5em;
   text-align: center;
+  color: var(--main-theme-color);
   margin-top: 0;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-#search-bar-container {
-  visibility: hidden;
-  margin: 3em 0;
-  display: flex;
-  flex-direction: column;
-}
-#search-bar-container input {
-  margin: 0.25em 0em;
-  padding: 0.5em;
-  color: white;
-  font-size: 1.25em;
-  background-color: var(--secondary-bg-color);
-  border-width: 1px;
-  border-style: solid;
-  border-color: var(--highlight-color);
-  border-bottom-color: var(--main-theme-color);
-}
-#search-bar-container input:focus {
-  border-bottom-width: 3px;
-  outline: 1px solid white;
+#usernames-list {
+  margin: .5em;
 }
 
+#usernames-list li {
+  padding: 0.5em;
+  border-bottom: 1px solid var(--highlight-color);
+}
+
+#usernames-list li:hover {
+  background-color: black;
+}
+
+#usernames-list li:nth-child(2n) {
+  background-color: var(--secondary-bg-color);
+}
+
+search-bar {
+  width: 75%;
+  max-width: 500px;
+  display: block;
+  margin: 5em;
+}
+
+#user-search-results {
+  width: 75%;
+  max-width: 600px;
+}

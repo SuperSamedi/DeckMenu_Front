@@ -155,7 +155,7 @@ export class DeckDetailsComponent implements OnInit {
 
   delete(id: number) {
     this._deckService.delete(id).subscribe(() => {
-      this._router.navigate(["decks"]);
+      this._router.navigate([this.user!.username + "/decks"]);
     });
   }
 
