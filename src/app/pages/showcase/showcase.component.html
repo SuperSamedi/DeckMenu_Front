@@ -21,18 +21,28 @@
         <div class="cover-info">
           <div class="deck-cover" [ngStyle]="{'background-image': 'url(' + deckCoverImage(deck) + ')'}"></div>
           <div class="deck-info">
-            <p class="description">description k,kr,vefmk,bfem  v,r,kvepk,vr efv</p>
+            <p class="description">description Lorem ipsum dolor sit amet consectetur, adipisicing elit!</p>
             <div id="power-and-difficulty">
               <div class="stats-with-stars">
                 <div>Power:</div>
                 <div class="stars">
-                  <img class="star" *ngFor="let star of [1, 2, 3, 4, 5]" [src]="deck.power >= star ? './assets/img/star-icon_filled.png' : './assets/img/star-icon_empty.png'" alt="rating star">
+                  <!-- <img class="star" *ngFor="let star of [1, 2, 3, 4, 5]" [src]="deck.power >= star ? './assets/img/star-icon_filled.png' : './assets/img/star-icon_empty.png'" alt="rating star"> -->
+                  <img class="star" src="./assets/img/star-icon_filled.png" alt="rating star">
+                  <img class="star" src="./assets/img/star-icon_filled.png" alt="rating star">
+                  <img class="star" src="./assets/img/star-icon_filled.png" alt="rating star">
+                  <img class="star" src="./assets/img/star-icon_filled.png" alt="rating star">
+                  <img class="star" src="/assets/img/star-icon_empty.png" alt="rating star">
                 </div>
               </div>
               <div class="stats-with-stars">
                 <div>Difficulty:</div>
                 <div class="stars">
-                  <img class="star" *ngFor="let star of [1, 2, 3, 4, 5]" [src]="deck.difficulty >= star ? './assets/img/star-icon_filled.png' : './assets/img/star-icon_empty.png'" alt="rating star">
+                  <!-- <img class="star" *ngFor="let star of [1, 2, 3, 4, 5]" [src]="deck.difficulty >= star ? './assets/img/star-icon_filled.png' : './assets/img/star-icon_empty.png'" alt="rating star"> -->
+                  <img class="star" src="./assets/img/star-icon_filled.png" alt="rating star">
+                  <img class="star" src="./assets/img/star-icon_filled.png" alt="rating star">
+                  <img class="star" src="./assets/img/star-icon_empty.png" alt="rating star">
+                  <img class="star" src="./assets/img/star-icon_empty.png" alt="rating star">
+                  <img class="star" src="./assets/img/star-icon_empty.png" alt="rating star">
                 </div>
               </div>
             </div>
